@@ -65,8 +65,8 @@ namespace AssetBundleBrowser
                     var possibleFolderData = m_inspectTabData.FolderDataContainingFilePath(currentPath);
                     if (possibleFolderData != null)
                     {
-                        if (!possibleFolderData.IgnoredFiles.Contains(currentPath))
-                            possibleFolderData.IgnoredFiles.Add(currentPath);
+                        if (!possibleFolderData.ignoredFiles.Contains(currentPath))
+                            possibleFolderData.ignoredFiles.Add(currentPath);
 
                         if(m_assetBundleInspectTab != null)
                             m_assetBundleInspectTab.RefreshBundles();
@@ -92,7 +92,7 @@ namespace AssetBundleBrowser
                 GUILayout.Label(new GUIContent("Name: " + bundle.name), leftStyle);
 
                 long fileSize = -1;
-                if(SingleBundleInspector.currentPath != string.Empty && File.Exists(SingleBundleInspector.currentPath) )
+                if(!System.String.IsNullOrEmpty(SingleBundleInspector.currentPath) && File.Exists(SingleBundleInspector.currentPath) )
                 {
                     System.IO.FileInfo fileInfo = new System.IO.FileInfo(SingleBundleInspector.currentPath);
                     fileSize = fileInfo.Length;
